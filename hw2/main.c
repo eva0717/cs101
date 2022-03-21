@@ -114,60 +114,61 @@ void get_6_RandNum(){ //get the random number for lottery
 //mainfunction
 int main(){
 	
-	//UI
+    //UI
     int a,i;
     char lottoFileName[80];
     printf("welcome to the lottery machine(?)\n");
-	printf("please input the operator ID:");
-	scanf("%d",&id);
+    printf("please input the operator ID:");
+    scanf("%d",&id);
 	
-	//check if Id = 0
-	if(id == 0){
-		int salary;
-		printf("please input the ID you want to add:");
-		scanf("%d",&id);
-		printf("please input the NAME you want to add:");
-		scanf("%s",name);
-		printf("please input the salary you want to add:");
-		scanf("%d",&salary);
-		recordTheEmployee(salary);
-		printf("end the input");
+    //check if Id = 0
+    if(id == 0){
+	//set variable
+        int salary;
+	//UI
+        printf("please input the ID you want to add:");
+        scanf("%d",&id);
+        printf("please input the NAME you want to add:");
+        scanf("%s",name);
+        printf("please input the salary you want to add:");
+        scanf("%d",&salary);
+        recordTheEmployee(salary);
+        printf("end the input");	
+    }
+	
+    else if(id != 0){
 		
-	}
+        //UI
+        printf("how many lottery you wanna buy:");
+	scanf("%d", &i);
+	printf("\noutput you %d set(s) of lottery to lotto.txt\n", i);
 	
-	else if(id != 0){
-		
-		//UI
-		printf("how many lottery you wanna buy:");
-	    scanf("%d", &i);
-	    printf("\noutput you %d set(s) of lottery to lotto.txt\n", i);
-	
-		//open&set the lotto file
-	    srand(time(NULL));
-	    countTimes();
-	    sprintf(lottoFileName, "lotto[%04d].txt", currentCount);
-	    lottoFile = fopen(lottoFileName,"w+");
-	    //remove the "enter" from time
-	    time_t now;
-	    time(&now);
-	    char* dt = ctime(&now);
-	    dt[strlen(dt)-1]=0;
-	    //print the words
-	    fprintf(lottoFile,"========= lotto649 =========\n");
-	    fprintf(lottoFile,"========+ No.%05d +========\n",currentCount);
-	    fprintf(lottoFile,"= %s =\n", dt);
-	    for(a = 1; a <= i; a++){
-	        fprintf(lottoFile,"= [%d]:", a);
-	        get_6_RandNum();
-	        fprintf(lottoFile,"=\n");
-	    }
-	    for(; a <= 5; a++)fprintf(lottoFile,"= [%d]:== == == == == == == =\n", a);
-	    fprintf(lottoFile, "========* Op.%05d *========\n", id);
-	    fprintf(lottoFile,"========= csie@CGU =========\n");
-	    fclose(lottoFile);
-	    
-	    //call functions
-	    cutTheTime();
-	    setAndOutputRecords();
+        //open&set the lotto file
+	srand(time(NULL));
+	countTimes();
+	sprintf(lottoFileName, "lotto[%04d].txt", currentCount);
+	lottoFile = fopen(lottoFileName,"w+");
+	//remove the "enter" from time
+	time_t now;
+	time(&now);
+	char* dt = ctime(&now);
+	dt[strlen(dt)-1]=0;
+	//print the words
+	fprintf(lottoFile,"========= lotto649 =========\n");
+	fprintf(lottoFile,"========+ No.%05d +========\n",currentCount);
+	fprintf(lottoFile,"= %s =\n", dt);
+	for(a = 1; a <= i; a++){
+	    fprintf(lottoFile,"= [%d]:", a);
+	    get_6_RandNum();
+	    fprintf(lottoFile,"=\n");
 	}
+	for(; a <= 5; a++)fprintf(lottoFile,"= [%d]:== == == == == == == =\n", a);
+	fprintf(lottoFile, "========* Op.%05d *========\n", id);
+	fprintf(lottoFile,"========= csie@CGU =========\n");
+	fclose(lottoFile);
+	 
+	//call functions
+	cutTheTime();
+	setAndOutputRecords();
+    }
 }
