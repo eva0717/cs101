@@ -34,7 +34,7 @@ int main(){
 		//printf("%d\t%d\t%d\t%s\n", tmp[i].lotto_no, tmp[i].lotto_receipt, tmp[i].emp_id, tmp[i].lotto_date);
 		i++;
 	}	
-
+	i--;
 
 	int no = 0; // = lotto_no = currentCount = i
 	int dateSum = 0, noSum, setsSum = 0, receiptSum = 0;
