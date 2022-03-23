@@ -16,7 +16,7 @@ static char Time[32];
 
 typedef struct lottoRecord{
 	int lotto_no;//= currentCount
-	int lotto_receipt;//= currentCount *55
+	int lotto_receipt;//= i *55
 	int emp_id;//= id
 	char lotto_date[32];//= date
 	char lotto_time[32];//= Time
@@ -47,10 +47,10 @@ void cutTheTime(){ //cut the time to date&time
 	strftime(Time, 100, "%H:%M:%S", localtime(&now));
 }
 
-void setAndOutputRecords(){
+void setAndOutputRecords(int i){
 	lotto_record_t doRecord;
 	doRecord.lotto_no = currentCount;
-	doRecord.lotto_receipt = currentCount*55;
+	doRecord.lotto_receipt = i*55;
 	doRecord.emp_id = id;
 	strcpy(doRecord.lotto_date, date);
 	strcpy(doRecord.lotto_time, Time);
@@ -169,6 +169,6 @@ int main(){
 	 
 	//call functions
 	cutTheTime();
-	setAndOutputRecords();
+	setAndOutputRecords(i);
     }
 }
