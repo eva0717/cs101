@@ -2,11 +2,10 @@
 
 FILE* hanoi;
 
-void rec_dec(char* s){
-    while(*s){
-        printf("%c,",*s);
-        s++;
-    }
+int rec_dec(char* s){
+    if(!*s)return 0;
+    printf("%c,",*s);
+    return 1+rec_dec(s+1);
 }
 
 void hanoi_tower(int n, char A , char B, char C) 
