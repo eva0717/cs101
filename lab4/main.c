@@ -1,12 +1,14 @@
 #include <stdio.h>
 
 static int count;
+static int number = 0;
 
 int* findAddress(int num, int* n){
     count = 0;
     while(*n != num){
         n++;
         count++;
+        if(count>10)return NULL;
     }
     return n;
 }
@@ -14,9 +16,9 @@ int* findAddress(int num, int* n){
 
 int main()
 {
-    int n[] = {6,4,7,2,0,9,8,1,5,3};
+    int n[] = {6,4,7,12,0,11,8,1,5,3};
     int* p;
-    int num1 = 8;
+    int num1 = 11;
     p = findAddress(num1, n);
     printf("No.1-----------------\n&n[%d] -> %p, n[%d] = %d; p -> %p, *p = %d\n",count , &n[count], count, n[count], p, *p);
     
@@ -28,7 +30,9 @@ int main()
             ap[i] = findAddress(b, n);
             printf("&n[%d] -> %p, n[%d] = %d; ap[%d] -> %p, *ap[%d] = %d\n", count, &n[count], count, n[count], i, ap[i], i, *ap[i]);
             i++;
+            b++;
         }    
-        b++;
+        else b++;
+        
     }    
 }
