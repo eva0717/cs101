@@ -1,14 +1,13 @@
 #include <stdio.h>
 
 static int count;
-static int number = 0;
 
 int* findAddress(int num, int* n){
     count = 0;
     while(*n != num){
         n++;
         count++;
-        if(count>10)return NULL;
+        if(count>10)return 0;
     }
     return n;
 }
@@ -32,7 +31,6 @@ int main()
             i++;
             b++;
         }    
-        else b++;
-        
+        else b++;  
     }    
 }
