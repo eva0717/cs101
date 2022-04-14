@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 static int count;
-static int number = 0;
 
 int* findAddress(int num, int* n){
     count = 0;
