@@ -7,7 +7,7 @@ typedef struct node{
 }node_t;
 
 node_t* allocate_node(int data){
-	int* ptr = (node_t*)calloc(1, sizeof(node_t));
+	int* ptr = (node_t*)calloc(1, sizeof(data));
 	return ptr;
 }
 
@@ -16,7 +16,9 @@ void show_list(node_t* list){
 }
 
 node_t* append_node(node_t* list, int new_data){
-	allocate_node(new_data);
+	if(list == NULL)allocate_node(new_data);
+	node_t.dataNum = new_data;
+	next = allocate_node(new_data);
 }
 
 void free_all_node(node_t* list){
