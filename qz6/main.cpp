@@ -1,49 +1,76 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
+
 using namespace std;
 
 class Clock{
-    public:
-    int hour,minute,second;
-    string meridian;
-    Clock(int H,int M,int S,string mer){
-        hour = H;
-        minute = M;
-        second = S;
-        meridian = mer;
-    }
-    display(){
-        cout << hour << ":" << minute << ":" << second << " " << meridian << endl;
-    }
+   public:
+        int hour;
+        int min;
+        int sec;
+        string ti;
+        
+    
+        Clock(int x,int y,int z,string f){
+            hour=x;
+            min=y;
+            sec=z;
+            ti=f;
+        }
+       
+        void display(){
+            cout<<hour<<":"<<min<<":"<<sec<<" ";
+            cout<<ti<<endl;
+        }
+        
 };
-
 class StandardClock : Clock{
-    public:
-    StandardClock(int H,int M,int S,string mer):Clock(H,M,S,mer){
-        if(meridian=="AM") meridian = "上午";
-        else if(meridian=="PM") meridian = "下午";
+  private:
+    int flag;
+    
+  public:
+    StandardClock(int x,int y,int z,string f):Clock(x,y,z,f){
+        if(ti=="AM"){
+           flag=0;
+        }else{
+           flag=1;
+        }
     }
-    display(){
-        cout << meridian << " " << hour << ":" << minute << ":" << second << endl;
+    void display(){
+        if(!flag){
+        cout<<"上午"<<" ";
+        }else{
+        cout<<"下午"<<" ";    
+        }
+        cout<<hour<<":"<<min<<":"<<sec<<endl;
     }
 };
-
 class MilitaryClock : Clock{
-    public:
-    MilitaryClock(int H,int M,int S,string mer):Clock(H,M,S,mer){
-        if(meridian=="PM") hour+=12;
+  private:
+    int flag;
+  public:
+    MilitaryClock(int x,int y,int z,string f):Clock(x,y,z,f){
+     if(ti=="AM"){
+           flag=0;
+        }else{
+           flag=1;
+        }
     }
-    display(){
-        cout <<  hour << ":" << minute << ":" << second;
+    void display(){
+       if(flag){
+            cout<<hour+12<<":";
+        }else{
+            cout<<hour<<":";
+        }
+        cout<<min<<":"<<sec<<endl;
     }
 };
-
 int main(){
-    Clock cc(10,25,43,"AM");
-    StandardClock sc(10,25,43,"AM");
-    MilitaryClock mc(10,25,43,"PM");
-    cc.display();
-    sc.display();
-    mc.display();
+   Clock cc(10,25,43,"AM");
+   StandardClock sc(10,25,43,"AM");
+   MilitaryClock mc(10,25,43,"AM");
+   cc.display();
+   sc.display();
+   mc.display();
     return 0;
 }
