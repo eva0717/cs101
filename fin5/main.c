@@ -36,6 +36,7 @@ class MMmanger{
             if(!flag){
                 cout << " <- Out of space : demand " << size;
             }
+            if(get_MMCapacity() == 0)cout << No space;
             cout << endl;
         }
         int* calloc_MM(int size){
